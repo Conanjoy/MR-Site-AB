@@ -39,8 +39,8 @@ import ssl
 import smtplib
 
 # Define user-agents
-PC_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 Edg/107.0.1418.24'
-MOBILE_USER_AGENT = 'Mozilla/5.0 (Linux; Android 12; SM-N9750) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Mobile Safari/537.36 EdgA/107.0.1418.28'
+PC_USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36 Edg/109.0.1518.61'
+MOBILE_USER_AGENT = 'Mozilla/5.0 (Linux; Android 12; SM-N9750) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Mobile Safari/537.36 EdgA/109.0.1518.53'
 
 
 # Global variables
@@ -1708,7 +1708,7 @@ def farmer():
         print(e, '\n') if ARGS.error else print('\n')
         ERROR = True
         browser.quit()
-        checkInternetConnection()
+        #checkInternetConnection()
         farmer()
     else:
         FINISHED_ACCOUNTS.clear()
@@ -1726,8 +1726,8 @@ def main():
     LANG, GEO, TZ = getCCodeLangAndOffset()
     
     # Enable virtual display if headless argument is present and proxies require authentication (Linux)
-    if platform.system() == "Linux" and ARGS.headless and ARGS.proxies and ARGS.authproxies:
-        display = Display(visible=0, size=(800, 600))
+    if platform.system() == "Linux":
+        display = Display(visible=0, size=(900, 800))
         display.start()
     
     if ARGS.proxies:
@@ -1753,7 +1753,7 @@ def main():
         logs()
         farmer()
     # Disable virtual display if it has been activated (Linux)
-    if platform.system() == "Linux" and ARGS.headless and ARGS.proxies and ARGS.authproxies:
+    if platform.system() == "Linux":
         display.stop()
     end = time.time()
     delta = end - start
